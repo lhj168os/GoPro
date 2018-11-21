@@ -16,3 +16,5 @@ golang.org/
 sourcegraph.com/
 debug
 !debug/
+pkg/
+bin/
