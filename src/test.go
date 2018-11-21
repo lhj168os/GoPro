@@ -14,7 +14,7 @@ func test(num1 int, num2 int) {
 }
 
 func main() {
-	pipe = make(chan int, 3)
+	pipe = make(chan int, 3 )
 	go test(0, 10)
 	go test(20, 30)
 	go test(50, 60)
