@@ -277,13 +277,38 @@ func quickSort(array []int) (int, time.Duration) {
 func mergerSort(array []int) (int, time.Duration) {
 	startTime := time.Now()
 	sum := 0
-
+	arrayLen := len(array)
+	tmp := make([]int, arrayLen)
+	if arrayLen > 2 {
+		mergerSort(array[:arrayLen/2])
+		mergerSort(array[arrayLen/2:])
+	}
+	for i, k, j := 0, 0, arrayLen/2; i < arrayLen; i++ {
+		sum++
+		switch {
+		case k >= arrayLen/2:
+			tmp[i] = array[j]
+			j++
+		case j >= arrayLen:
+			tmp[i] = array[k]
+			k++
+		case array[k] <= array[j]:
+			tmp[i] = array[k]
+			k++
+		case array[k] > array[j]:
+			tmp[i] = array[j]
+			j++
+		}
+	}
+	for l := 0; l < arrayLen; l++ {
+		sum++
+		array[l] = tmp[l]
+	}
 	timeCost := time.Since(startTime)
 	return sum, timeCost
 }
 
-//基础排序
-
+//基数排序
 func baseSort(array []int) (int, time.Duration) {
 	startTime := time.Now()
 	sum := 0
