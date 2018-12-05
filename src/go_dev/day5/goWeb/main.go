@@ -33,10 +33,23 @@ func login(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func registe(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("method: ", r.Method)
+	if r.Method == "GET" {
+		t, _ := template.ParseFiles("registe.html")
+		t.Execute(w, nil)
+	} else {
+		r.ParseForm()
+		fmt.Println("username: ", r.Form["username"])
+		fmt.Println("password: ", r.Form["password"])
+	}
+}
+
 func main() {
 	http.HandleFunc("/", sayhelloName)
 	http.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("static"))))
 	http.HandleFunc("/login", login)
+	http.HandleFunc("/registe", registe)
 	err := http.ListenAndServe(":9090", nil)
 	if err != nil {
 		log.Fatal("ListenAndServer: ", err)
