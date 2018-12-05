@@ -65,5 +65,4 @@ func main() {
 	idx = strings.IndexByte(str, 'y')
 	fmt.Println("strings.IndexByte(str, 'y') = ", idx)
 
-	
 }
