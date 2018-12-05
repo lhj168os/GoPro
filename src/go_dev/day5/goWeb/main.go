@@ -24,7 +24,7 @@ func sayhelloName(w http.ResponseWriter, r *http.Request) {
 func login(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("method: ", r.Method)
 	if r.Method == "GET" {
-		t, _ := template.ParseFiles("login.gtpl")
+		t, _ := template.ParseFiles("login.html")
 		t.Execute(w, nil)
 	} else {
 		r.ParseForm()
@@ -35,6 +35,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", sayhelloName)
+	http.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("static"))))
 	http.HandleFunc("/login", login)
 	err := http.ListenAndServe(":9090", nil)
 	if err != nil {
