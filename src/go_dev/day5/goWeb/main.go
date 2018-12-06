@@ -16,6 +16,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 		fmt.Println("username: ", r.Form["username"])
 		fmt.Println("password: ", r.Form["password"])
+		fmt.Println("verifyCode: ", r.Form["verifycode"])
 	}
 }
 
@@ -28,6 +29,8 @@ func registe(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 		fmt.Println("username: ", r.Form["username"])
 		fmt.Println("password: ", r.Form["password"])
+		fmt.Println("phoneNumber: ", r.Form["phone"])
+		fmt.Println("Email: ", r.Form["email"])
 	}
 }
 
