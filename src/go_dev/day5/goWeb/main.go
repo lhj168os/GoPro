@@ -39,7 +39,6 @@ func registe(w http.ResponseWriter, r *http.Request) {
 
 func redirect(w http.ResponseWriter, req *http.Request) {
 	_host := strings.Split(req.Host, ":")
-	_host[1] = "443"
 
 	target := "https://" + strings.Join(_host, ":") + req.URL.Path
 	if len(req.URL.RawQuery) > 0 {
