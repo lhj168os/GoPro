@@ -40,6 +40,7 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("static"))))
 	http.HandleFunc("/", login)
 	http.HandleFunc("/registe", registe)
+	http.ListenAndServeTLS(":443", "1_www.hawtech.cn_bundle.crt", "2_www.hawtech.cn.key", nil)
 	err := http.ListenAndServe(":80", nil)
 	if err != nil {
 		log.Fatal("ListenAndServer: ", err)
