@@ -31,6 +31,8 @@ func registe(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("password: ", r.Form["password"])
 		fmt.Println("phoneNumber: ", r.Form["phone"])
 		fmt.Println("Email: ", r.Form["email"])
+		t, _ := template.ParseFiles("login.html")
+		t.Execute(w, nil)
 	}
 }
 
