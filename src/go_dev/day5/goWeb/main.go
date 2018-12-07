@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"strings"
 )
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -36,12 +37,23 @@ func registe(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func redirect(w http.ResponseWriter, req *http.Request) {
+	_host := strings.Split(req.Host, ":")
+	_host[1] = "443"
+
+	target := "https://" + strings.Join(_host, ":") + req.URL.Path
+	if len(req.URL.RawQuery) > 0 {
+		target += "?" + req.URL.RawQuery
+	}
+	http.Redirect(w, req, target, http.StatusTemporaryRedirect)
+}
+
 func main() {
 	http.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("static"))))
 	http.HandleFunc("/", login)
 	http.HandleFunc("/registe", registe)
-	http.ListenAndServeTLS(":443", "1_www.hawtech.cn_bundle.crt", "2_www.hawtech.cn.key", nil)
-	err := http.ListenAndServe(":80", nil)
+	go http.ListenAndServe(":80", http.HandlerFunc(redirect))
+	err := http.ListenAndServeTLS(":443", "1_www.hawtech.cn_bundle.crt", "2_www.hawtech.cn.key", nil)
 	if err != nil {
 		log.Fatal("ListenAndServer: ", err)
 	}
