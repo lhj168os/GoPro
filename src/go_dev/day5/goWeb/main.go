@@ -26,7 +26,7 @@ func registe(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		t, _ := template.ParseFiles("registe.html")
 		t.Execute(w, nil)
-	} else {
+	} else { 
 		r.ParseForm()
 		fmt.Println("username: ", r.Form["username"])
 		fmt.Println("password: ", r.Form["password"])
