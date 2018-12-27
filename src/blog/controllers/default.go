@@ -19,7 +19,14 @@ func (c *LoginController) Get() {
 }
 
 func (c *LoginController) Post() {
-	c.Ctx.WriteString("登录成功！")
+	userName := c.GetString("username")
+	passwd := c.GetString("password")
+	if userName == passwd {
+		c.Ctx.WriteString("登录成功！")
+	} else {
+		c.Ctx.WriteString("登录失败！")
+	}
+
 }
 
 func (c *RegisteController) Get() {
