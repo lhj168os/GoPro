@@ -7,6 +7,11 @@ import (
 )
 
 func init() {
-	beego.Router("/", &controllers.LoginController{})
-	beego.Router("/registe", &controllers.RegisteController{})
+	beego.Router("/", &controllers.IndexController{})
+	beego.Router("/index.html", &controllers.IndexController{})
+	beego.Router("/about.html", &controllers.AboutController{})
+	beego.Router("/album.html", &controllers.AlbumController{})
+	beego.Router("/details.html", &controllers.DetailsController{})
+	beego.Router("/leacots.html", &controllers.LeacotsController{})
+	beego.Router("/whisper.html", &controllers.WhisperController{})
 }

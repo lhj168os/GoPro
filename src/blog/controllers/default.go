@@ -4,36 +4,62 @@ import (
 	"github.com/astaxie/beego"
 )
 
-type LoginController struct {
+type IndexController struct {
 	beego.Controller
 }
 
-type RegisteController struct {
+type AboutController struct {
 	beego.Controller
 }
 
-func (c *LoginController) Get() {
+type AlbumController struct {
+	beego.Controller
+}
+
+type DetailsController struct {
+	beego.Controller
+}
+
+type LeacotsController struct {
+	beego.Controller
+}
+
+type WhisperController struct {
+	beego.Controller
+}
+
+func (c *IndexController) Get() {
 	//c.Data["Website"] = "beego.me"
 	//c.Data["Email"] = "astaxie@gmail.com"
-	c.TplName = "login.html"
+	c.TplName = "index.html"
 }
 
-func (c *LoginController) Post() {
-	userName := c.GetString("username")
-	passwd := c.GetString("password")
-	if userName == passwd {
-		c.Ctx.WriteString("登录成功！")
-	} else {
-		c.Ctx.WriteString("登录失败！")
-	}
-
+func (c *AboutController) Get() {
+	//c.Data["Website"] = "beego.me"
+	//c.Data["Email"] = "astaxie@gmail.com"
+	c.TplName = "about.html"
 }
 
-func (c *RegisteController) Get() {
-	c.TplName = "registe.html"
+func (c *AlbumController) Get() {
+	//c.Data["Website"] = "beego.me"
+	//c.Data["Email"] = "astaxie@gmail.com"
+	c.TplName = "album.html"
 }
 
-func (c *RegisteController) Post() {
-	c.Ctx.WriteString("注册成功！")
-	c.TplName = "login.html"
+func (c *DetailsController) Get() {
+	c.Data["name"] = "Jay"
+	c.Data["cont"] = "87678"
+	c.TplName = "details.html"
+}
+
+func (c *LeacotsController) Get() {
+	c.Data["name"] = "Jay"
+	c.Data["cont"] = "87678"
+	c.TplName = "leacots.html"
+}
+
+func (c *WhisperController) Get() {
+	c.Data["name"] = "Jay"
+	c.Data["cont"] = "87678"
+	c.TplName = "whisper.html"
 }
